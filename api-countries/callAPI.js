@@ -1,24 +1,24 @@
 
 
 
-var request = require('request');
+var request = require('nodemon');
 
-request.get("http://localhost:8000/countries", function (err, res, body) {
-    
+nodemon.get("http://localhost:8000/countries",  (err, res, body) => {
+
     var countries = JSON.parse(body);
-				
 
 
-var countriesNames = countries.map(function(element) {
-return element;
-})
 
-console.log(countriesNames.reverse());
+    var countriesNames = countries.map( (element) => {
+        return element;
+    })
+
+    console.log(countriesNames.reverse());
 });
 
 
 
-    
+
 // var getCountries = JSON.parse(body);
 // // console.log(getCountries);
 //        getCountries.map((elem) =>{
