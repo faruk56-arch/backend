@@ -15,6 +15,22 @@ nodemon.get("http://localhost:8000/countries",  (err, res, body) => {
 
     console.log(countriesNames.reverse());
 });
+var request = require('nodemon');
+
+
+nodemon.get("http://localhost:8000//countries/capital",  (err, res, body) => {
+
+    var cpt = JSON.parse(body);
+
+
+
+    var capiTal = cpt.map( (element) => {
+        return element;
+    })
+
+    console.log(capiTal.reverse());
+});
+
 
 
 
