@@ -9,7 +9,7 @@ app.get('/json/authors/:id', (req, res) => {
   res.send({
     name: "Lawrence Nowell",
     nationality: "UK"
-});
+  });
 });
 
 
@@ -18,8 +18,8 @@ app.get('/json/authors/:id/books', (req, res) => {
     books: ["Beowulf"]
   });
 });
- 
-  
+
+
 
 app.listen(port, () => {
   console.log('Server started on port: ' + port);
