@@ -3,26 +3,26 @@ const cors = require("cors")
 const { movies } = require("./dataMovies.js")
 
 
-const app = express()
+const app = express();
 
 app.use(cors())
 
 const port = 8001
 
 app.get("/movie", (req, res) => {
-    const dataMovies = movies.map(elem => {
+    // const dataMovies = movies.map(elem => {
         
-        return {
-            // original_title: elem.result.original_title,
-            // poster_path: elem.poster_path,
-            // release_date: elem.release_date
-        }   
-    })
+    //     return {
+    //         // original_title: elem.result.original_title,
+    //         // poster_path: elem.poster_path,
+    //         // release_date: elem.release_date
+    //     }   
+    // })
     res.json(movies)
-    console.log(dataMovies);
+    // console.log(dataMovies);
 })
 
-app.get("/movies/:euro", (req, res) => {
+app.get("/movies/:horreur", (req, res) => {
     const euro = req.params.euro
     const dataMovies = movies.map(elem => {
         
