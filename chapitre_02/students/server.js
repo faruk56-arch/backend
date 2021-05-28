@@ -18,11 +18,11 @@ app.get("/students", (req, res) => {
 
 
 app.post("/students", (req, res) => {
-    
+
     const newStudent = req.body.name
     console.log(newStudent)
     studentName.push(newStudent)
-    
+
     res.json({
         message: "student added first"
     })
