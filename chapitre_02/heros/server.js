@@ -48,45 +48,54 @@ app.get("/heros/:name/powers", function (req, res) {
 })
 
 
-app.post("/heros", transFormName, (req, res, next) => {
-    const newHero = req.body
-    console.log("newHero:", newHero)
 
-    const heroFound = superHeros.find(element => {
-        console.log("heros found", element.name)
-        return element.name === newHero.name
+
+app.post("/heros", transFormName, (req, res) => {
+    // console.log("message",req.body)
+
+    const newHero = req.body
+    console.log("Heros", newHero)
+    superHeros.push(newHero);
+
+    res.json({
+        message: "ok hero added "
     })
 
-    if (heroFound === undefined) {
-        console.log("hero not found in the list")
-        superHeros.push(newHero)
-        res.json({
-            message: "hero added"
-        })
-
-    } else {
-        console.log("hero found in the list")
-    }
-    next()
 })
 
-app.post("/heros/:name/powers",  (req, res) => {
-    const powerNames = req.params.name
-    // console.log("powers list", req.params.name)
-    // console.log("powersss:", req.body.power)
-    const heroPowers =  req.body.power
 
-    infoHero = superHeros.find(element => {
-        if (element.name.toLowerCase() === powerNames.toLowerCase()) {
-            return element.power.push(heroPowers)
-        } 
-        
-        
+
+
+app.post("/heros/:name/powers", (req, res) => {
+
+    const heroName = req.params.name
+    // je recupere les nome de hero
+
+    const heroPowers = req.body.power
+    // je recupere les powers
+    // console.log("powers:", heroPowers)
+
+
+    infoHero = superHeros.find(hero => {
+        //Ici je cherche un hero
+
+        if (hero.name === heroName) {
+            return hero
+            // Je retourne unn hero
+        }
     })
+
+    console.log("infoHero", infoHero)
+
+    // console.log("Power", infoHero.power)
+
+    infoHero.power.push(heroPowers)
+    // Je ajoute un power à un Hero
+
     res.json({
-        message:"power added"
+        message: "power added"
     })
-    
+
 })
 
 app.listen(8001, function () {
@@ -110,22 +119,6 @@ app.listen(8001, function () {
 
 
 
-
-// app.post("/heros",  (req, res, next) => {
-
-//     const newHero = req.body
-//     console.log("Heros", newHero)
-//     superHeros.push(newHero); 
-//     res.json({
-//         message: "ok hero added "
-//         })
-//         next();
-
-// })
-
-
-
-
 //1er recuperer le power de l'URL
 //2er chercher Le pouvoir de un hero de l'URL
 
@@ -138,7 +131,6 @@ app.listen(8001, function () {
 
 // console.log("hero found in db is ", typeof heroFound)
     // console.log("user entered hero is ", typeof newHero)
-
 
 
 
