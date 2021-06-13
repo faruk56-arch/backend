@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 
  //Creation de schema 
- // Creer les cles  de schema et definir le type leur valeur  
+ // Creer les cles  de schema et definir le type de leur valeur  
 const heroSchema = new mongoose.Schema({
     name: String,
     powers:[String],

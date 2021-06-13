@@ -3,7 +3,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 
 
-mongoose.connect('mongodb://localhost:27017/heros',(err) => {
+mongoose.connect('mongodb://localhost:27017/herosDB',(err) => {
     if (err) {
         console.error(err);
     } else {

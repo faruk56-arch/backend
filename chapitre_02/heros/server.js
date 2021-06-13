@@ -26,7 +26,7 @@ app.use(transFormName)
 
 app.get("/heros", function (req, res) {
     // console.log("home");
-    // console.log("superHeros", superHeros);
+    console.log("superHeros", superHeros);
     res.json(superHeros);
 });
 // 1er etape de recuperer le nom de l'URL 

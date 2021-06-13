@@ -11,28 +11,24 @@ mongoose.connect('mongodb://localhost:27017/hotelDB', (err) => {
     }
 })
 
-//
+
 const port = 8001
-//
+
 const app = express()
-//
+
 app.use(cors())
-//
+
 app.use(express.json())
 
-// req c'est une parametre 
-app.get('/hotels', async(req, res) => {
+app.get('/hotels', async (req, res) => {
     const hotels = await hotel.find()
     res.json(hotels)
-    // quel type de reponse envoi json//
-    //json une methode qui envoi une reponse en format json
-
+    
 })
-// id 
-app.get('/hotels/:id', async(req, res) => {
+
+app.get('/hotels/:id', async (req, res) => {
     const hotelId = req.params.id
     const hotelIdFound = await hotel.find(hotelId)
-
 
     res.json({
         message: "Hotel found"
@@ -41,7 +37,6 @@ app.get('/hotels/:id', async(req, res) => {
 
 
 
-//
 app.listen(port, () => {
     console.log(`J'écoute des requêtes sur le port ${port}`);
 })
