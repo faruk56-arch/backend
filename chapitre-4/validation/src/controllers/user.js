@@ -6,10 +6,10 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     age: { type: Number, min: 1, max: 99},
-    city: string
+    city: String
 });
 
 
-const user = mongoose.model('user', userSchema)
+const User = mongoose.model('user', userSchema)
 
-module.exports = user
+module.exports = User
