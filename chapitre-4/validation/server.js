@@ -40,7 +40,7 @@ app.get('/users', async (req, res) => {
 
 app.get('/users/:name', async (req, res) => {
 
-    
+
     const userName = req.params.name
     console.log("I got username", userName)
 
@@ -68,6 +68,40 @@ app.get('/users/:name', async (req, res) => {
     }
 
 })
+app.get('/users/:email', async (req, res) => {
+    const userEmail = req.params.email
+    console.log("mail trouvé", userEmail)
+
+    try {
+        const mailFound = await User.find({email: userEmail})
+        res.json({
+            message:"mail found", mailFound
+        })
+
+    } catch (err) {
+        console.log("I didn't get email'", userEmail)
+    }
+})
+
+
+app.get('/users/:id', async (req, res) => {
+    const userID = req.params.id
+    console.log("i got ID", userID)
+
+    try {
+        const idFounded = await User.find({ _id: userID })
+
+        res.json({
+            message: 'ID found', idFounded
+        })
+
+    } catch (err) {
+        console.log("ID did not found", idFounded)
+    }
+})
+
+
+
 
 
 
