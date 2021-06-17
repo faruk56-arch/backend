@@ -38,34 +38,37 @@ app.get('/users', async (req, res) => {
 })
 
 
-app.get('/users/:username', async (req, res) => {
+app.get('/users/:name', async (req, res) => {
 
+    
+    const userName = req.params.name
+    console.log("I got username", userName)
 
     try {
-        console.log("I got username")
+        const userFound = await User.find({ name: userName })
+        if (userFound) {
+            console.log("user found", userFound)
+            res.json({
+                message: "user found", userFound
+            })
+        } else {
+            console.log("user pas trouvé")
+            res.json({
+                message: "user not found", userFound
+            })
+
+
+        }
+
         res.json({
-            message: "found username"
+            message: "found username", userName
         })
     } catch (err) {
         console.log("I didn't get username'")
-
     }
 
 })
 
-
-app.get('/users/:email', async (req, res) => {
-
-    try {
-        console.log("I got mail")
-        res.json({
-            message: "found mail"
-        })
-    } catch (err) {
-        console.log("i didn't get mail'")
-    }
-    
-})
 
 
 
@@ -123,3 +126,33 @@ app.post('/users/add',
 app.listen(port, () => {
     console.log("The server is listing in the port: ", port)
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// app.get('/users/:email', async (req, res) => {
+
+//     try {
+//         console.log("I got mail")
+//         res.json({
+//             message: "found mail"
+//         })
+//     } catch (err) {
+//         console.log("i didn't get mail'")
+//     }
+
+// })
