@@ -32,13 +32,11 @@ app.get('/users', async (req, res) => {
         res.json({
             message: "ok"
         })
-
     }
-
 })
 
 
-app.get('/users/:name', async (req, res) => {
+app.get('/users/username/:name', async (req, res) => {
 
 
     const userName = req.params.name
@@ -56,10 +54,7 @@ app.get('/users/:name', async (req, res) => {
             res.json({
                 message: "user not found", userFound
             })
-
-
         }
-
         res.json({
             message: "found username", userName
         })
@@ -68,12 +63,13 @@ app.get('/users/:name', async (req, res) => {
     }
 
 })
-app.get('/users/:email', async (req, res) => {
+app.get('/users/mail/:email', async (req, res) => {
     const userEmail = req.params.email
     console.log("mail trouvé", userEmail)
 
     try {
-        const mailFound = await User.find({email: userEmail})
+        const mailFound = await User.findOne({email: userEmail})
+        console.log("got mail", mailFound)
         res.json({
             message:"mail found", mailFound
         })
@@ -99,10 +95,6 @@ app.get('/users/:id', async (req, res) => {
         console.log("ID did not found", idFounded)
     }
 })
-
-
-
-
 
 
 
@@ -146,7 +138,6 @@ app.post('/users/add',
             res.json({
                 message: "New user added"
             })
-
         } catch (err) {
 
             console.log("Something went wrong while adding new user", error)
