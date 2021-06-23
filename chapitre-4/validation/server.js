@@ -68,10 +68,10 @@ app.get('/users/mail/:email', async (req, res) => {
     console.log("mail trouvé", userEmail)
 
     try {
-        const mailFound = await User.findOne({email: userEmail})
+        const mailFound = await User.findOne({ email: userEmail })
         console.log("got mail", mailFound)
         res.json({
-            message:"mail found", mailFound
+            message: "mail found", mailFound
         })
 
     } catch (err) {
