@@ -7,6 +7,8 @@ const jwt = require("jsonwebtoken")
 const config = require("./config.js")
 const { validationResult } = require("express-validator");
 const validate = require("./validation")
+const cors = require("cors")
+
 
 
 
@@ -20,6 +22,7 @@ mongoose.connect(config.mongoURL, { useNewUrlParser: true, useUnifiedTopology: t
 
 const port = config.port
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 
@@ -34,6 +37,7 @@ app.post('/signup', validate, async (req, res) => {
             })
         } else {
             const userInfo = req.body
+            console.log("userInfo",userInfo)
             const password = bcryptjs.hashSync(req.body.password)
             userInfo["password"] = password
             console.log("userInfo got", userInfo)
@@ -97,22 +101,3 @@ app.listen(port, () => {
 
 
 
-
-// try {
-//     const foundPasswords = bcrypt.compareSync(logPass,password)
-//     console.log("foundPasswords",foundPasswords)
-//     if (foundPasswords) {
-//         const token = jwt.sign(
-//             {
-//                 id: user._id
-//             }, config.secret,
-//             {
-//                 expiresIn: 60 * 60
-//             })
-//         res.json({ message: "you are now login" })
-//     } 
-// }
-
-// catch (error) {
-//     res.status(500).json({ message: "There was an error while treating the request" })
-// }
